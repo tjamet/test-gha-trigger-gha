@@ -26,14 +26,16 @@ jobs:
         run: echo "${{ github.ref_name }}"
   
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
 
       - name: push new commit to master
-        if: "${{github.ref_name}} == 'test' "
+        if: ${{ github.ref_name == 'test' }}
         run: |
           date > last_update
           git config --global user.name "gha"
           git config --global user.email "gha@example.com"
           git add last_update
           git commit -m "update last update"
-          git push
+          git push origin HEAD:refs/heads/main
 
