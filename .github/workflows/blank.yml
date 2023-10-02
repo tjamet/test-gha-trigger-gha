@@ -22,12 +22,13 @@ jobs:
     steps:
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: Print ref
         run: echo "${{ github.ref_name }}"
   
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: push new commit to master
         if: ${{ github.ref_name == 'test' }}
