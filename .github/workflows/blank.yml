@@ -32,6 +32,7 @@ jobs:
       - name: push new commit to master
         if: ${{ github.ref_name == 'test' }}
         run: |
+          git log
           date > last_update
           git config --global user.name "gha"
           git config --global user.email "gha@example.com"
